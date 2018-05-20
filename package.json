@@ -1,0 +1,11 @@
+{
+  "name": "amustarter",
+  "version": "1.0.0",
+  "description": "gulp starter website template",
+  "main": "index.js",
+  "author": "Aurthur Musendame",
+  "license": "MIT",
+  "dependencies": {
+    "gulp": "^3.9.1"
+  }
+}
