@@ -1,7 +1,7 @@
 {
-  "name": "dispatrace",
+  "name": "amuse-starter",
   "version": "1.0.0",
-  "description": "Dispatrace is an electronic memo manager",
+  "description": "Starter Template",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
