@@ -1,154 +1,141 @@
-const gulp = require('gulp');
-const sass = require('gulp-sass');
-const browserSync = require('browser-sync').create();
-const useref = require('gulp-useref');
-const uglify = require('gulp-uglify');
-const gulpIf = require('gulp-if');
-const nano = require('cssnano');
-const cssnano = require('gulp-cssnano');
-const imagemin = require('gulp-imagemin');
-const cache = require('gulp-cache');
-const del = require('del');
-const runSequence = require('run-sequence');
-const autoprefixer = require('autoprefixer');
-const sourcemaps = require('gulp-sourcemaps');
-const babel = require('gulp-babel');
-const postcss = require('gulp-postcss');
+'use strict';
 
-//Task for sass
-gulp.task('sass', function(){
-  return gulp.src('app/scss/**/*.scss')
-    .pipe(sass()) // Converts Sass to CSS with gulp-sass
-    .pipe(postcss([autoprefixer({browsers: ['last 2 versions']}), nano()]))  // to usewith cssnano
-    .pipe(gulp.dest('app/css'))
-    .pipe(browserSync.reload({
-      stream: true
+const 	gulp = require('gulp'),
+		sass = require('gulp-sass'),
+		babel = require('gulp-babel'),
+		concat = require('gulp-concat'),
+		uglify = require('gulp-uglify'),
+		rename = require('gulp-rename'),
+		cleanCSS = require('gulp-clean-css'),
+		del = require('del'),
+		imagemin = require("gulp-imagemin"),
+		browsersync = require('browser-sync'),
+		server = browsersync.create();
+
+const paths = {
+  styles: {
+    src: 'app/scss/**/*.scss',
+    dest: 'app/assets/css/'
+  },
+  scripts: {
+    src: 'app/js/**/*.js',
+    dest: 'app/assets/js/'
+  },
+  images: {
+    src: 'app/images/**/*.{jpg,jpeg,png,svg}',
+    dest: 'app/assets/img/'
+  }
+};
+
+// Tasks
+function styles() {
+  return gulp.src(paths.styles.src)
+    .pipe(sass())
+    .pipe(gulp.dest(paths.styles.dest))
+    .pipe(cleanCSS())
+    // pass in options to the stream
+    .pipe(rename({
+      basename: 'main',
+      suffix: '.min'
     }))
-});
+    .pipe(gulp.dest(paths.styles.dest));
+}
 
-// Browser Sync
-gulp.task('browserSync', function() {
-  browserSync.init({
-    server: {baseDir: 'app'}
-  })
-})
+function clean() {
+  return del([ './app/assets/' ]);
+}
 
-// Optimizing CSS and JavaScript files
-	// concatenate js script tags into dist/js/main.min.js
-gulp.task('useref', function(){
-  return gulp.src('app/*.html')
-    .pipe(useref())
-    .pipe( // Writing ES6 with Babel
-    	gulpIf('*.js',
-    		babel({
-            	presets: ['env']
-        })))
-    // Minifies only if it's a JavaScript file
-    .pipe(gulpIf('*.js', uglify()))    
-    // Minifies only if it's a CSS file
-    .pipe(gulpIf('*.css', cssnano()))
-    .pipe(gulp.dest('dist'))
-});
+function scripts() {
+  return gulp.src(paths.scripts.src, { sourcemaps: true })
+    .pipe(babel())
+    // .pipe(uglify())
+    // .pipe(concat('main.min.js'))
+    .pipe(gulp.dest(paths.scripts.dest))
+    .pipe(uglify())
+    .pipe(concat('main.min.js'))
+    .pipe(gulp.dest(paths.scripts.dest));
+}
 
-// Optimizing Images
-// Optimizing images however, is an extremely slow process 
-// that you'd not want to repeat unless necessary
-gulp.task('images', function(){
-  return gulp.src('app/images/**/*.+(png|jpg|gif|svg)')
-  // Caching images that ran through imagemin
-  .pipe(cache(imagemin({
-  	  // create interlaced GIFs by setting the 
-  	  // interlaced option key to true if you want
-      interlaced: true
-    })))
-  .pipe(gulp.dest('dist/images'))
-});
 
-// Writing ES6 with Babel
-gulp.task('babell', () =>
-    gulp.src('app/js/**/*.js')
-        .pipe(sourcemaps.init())
-        .pipe(babel({
-            presets: ['env']
-        }))
-        .pipe(sourcemaps.write('.'))
-        .pipe(gulp.dest('dist/js'))
-);
+function images() {
+  return gulp.src(paths.images.src, {since: gulp.lastRun(images)})
+    .pipe(imagemin({optimizationLevel: 5}))
+    .pipe(gulp.dest(paths.images.dest));
+}
 
-// Autoprefixer
-// Using Autoprefixer to write vendor-free CSS code
-gulp.task('autoprefixer', function () {
-    return gulp.src('app/**/*.css')
-    	// Adding Sourcemaps for easier debugging
-        .pipe(sourcemaps.init())
-        .pipe(postcss([ autoprefixer() ]))
-        .pipe(sourcemaps.write('.'))
-        .pipe(gulp.dest('app/css'));
-});
 
-// Copying Fonts to Dist
-gulp.task('fonts', function() {
+function fonts() {
   return gulp.src('app/fonts/**/*')
-  .pipe(gulp.dest('dist/fonts'))
-})
+        .pipe(gulp.dest('app/assets/fonts'))
+}
 
-// Cleaning up generated files automatically
-gulp.task('clean', function() {
-  return del.sync('dist');
-})
+function browserSync(done) {
+  server.init({
+    server: {
+      baseDir: "./app/"
+    },
+    port: 3000
+  });
+  done();
+}
 
-gulp.task('clean:css', function() {
-  return del.sync('app/css');
-})
-
-
-gulp.task('clean:dist', function() {
-  return del.sync(['dist/**/*', '!dist/images', '!dist/images/**/*']);
-});
-
-// Clear cached images
-gulp.task('cache:clear', function (callback) {
-	return cache.clearAll(callback)
-})
-
-// watch for changes
-gulp.task('watch', ['browserSync', 'sass', 'autoprefixer'], function(){
-  gulp.watch('app/scss/**/*.scss', ['sass']);
-  // gulp.watch('app/css/**/*.css', postcss([ autoprefixer() ]));
-  // Reloads the browser whenever HTML or JS files change
-  gulp.watch('app/*.html', browserSync.reload);
-  gulp.watch(
-    'app/js/**/*.js', [
-      babel({presets: ['env']}) , 
-      browserSync.reload
-  ]);
-})
-
-gulp.task('build', function (callback) {
-  runSequence(
-  	['clean:dist', 'clean:css'],
-    'sass',
-    'useref', 
-    'images', 
-    'fonts'
-  )
-})
-
-gulp.task('default', function (callback) {
-  runSequence(['sass', 'browserSync'], 'watch',
-    callback
-  )
-})
+function browserSyncReload(done) {
+  server.reload();
+  done();
+}
 
 // get bootstrap js and j query js
-gulp.task('get-bj', function() { 
-        return gulp.src
-            ([
-            'node_modules/jquery/dist/jquery.js', 
-            'node_modules/bootstrap/dist/js/bootstrap.js', 
-            ])
-        .pipe(gulp.dest('app/js/'));
-});
+function getjs() { 
+    return gulp.src
+        ([
+        'node_modules/jquery/dist/jquery.min.js', 
+        'node_modules/bootstrap/dist/js/bootstrap.min.js', 
+        ])
+    .pipe(gulp.dest('app/assets/js/'));
+}
 
+// get bootstrap css
+function getcss() { 
+    return gulp.src
+        ([
+        'node_modules/bootstrap/dist/css/bootstrap.min.css', 
+        ])
+    .pipe(gulp.dest('app/assets/css/'));
+}
 
-// echo fs.inotify.max_user_watches=524288 | sudo tee -a /etc/sysctl.conf && sudo sysctl -p
+function watch() {
+  gulp.watch(paths.scripts.src, gulp.series(scripts, browserSyncReload));
+  gulp.watch(paths.styles.src, gulp.series(styles, browserSyncReload));
+  gulp.watch(paths.images.src, gulp.series(images, browserSyncReload));
+  gulp.watch('app/**/*.html', browserSyncReload);
+}
+
+function fetch() {
+  return gulp.series(
+    clean, 
+    gulp.parallel(
+      getcss, 
+      getjs, 
+      scripts, 
+      styles, 
+      images,
+      fonts,
+    )
+  );
+}
+
+gulp.task('dev', gulp.series(fetch, gulp.parallel(browserSync, watch)));
+
+gulp.task('develop', gulp.series(
+    clean, 
+    gulp.parallel(
+      getcss, 
+      getjs, 
+      scripts, 
+      styles, 
+      images,
+      fonts,
+    ),
+    browserSync,
+    watch
+  ));

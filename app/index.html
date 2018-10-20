@@ -2,64 +2,258 @@
 <html lang="en">
 	<head>
 		<meta charset="UTF-8">
-		<title>AmuStart the Great</title>		
-		<!-- faontawesome js and css-->
-		<script src="fonts/fontawesome/js/fontawesome-all.js"></script>
-		<link rel="stylesheet" href="fonts/fontawesome/css/fa-svg-with-js.css">
-		<!--build:css css/styles.min.css-->
-		<link rel="stylesheet" href="css/styles.css">
-		<!--endbuild-->
+		<title>Home | Amusely</title>	
+		<script src="assets/js/typed.min.js"></script>
+		<script src="assets/fonts/fontawesome/js/fontawesome-all.js"></script>
+		<link rel="stylesheet" href="assets/fonts/fontawesome/css/fa-svg-with-js.css">
+		<link rel="stylesheet" href="assets/css/bootstrap.min.css">
+		<link rel="stylesheet" href="assets/css/main.min.css">
 	</head>
-	<body>
-		<header class="main-header">
-			
+	<body id="page-top">	
+
+		<header id="particles-js" class="main-header">
+
 		</header>
 
-		<main class="main-body">
-			<div class="container">			
-
-				<div class="top-spacer"></div>
-				<h1 class="Welcome text-center"></h1>
-				<p class="text-center">
-					<i class="fas fa-ribbon"></i>
-					This starter template is powered by gulp.js, bootstrap 4, sass, jquery and fontawesome. You are free to customise as you wish.					
-					<i class="fas fa-helicopter"></i>
-				</p>
-
-				<br>
-				<hr>
-				<br>
-
-				<!-- logo Images -->
-				<div class="d-flex justify-content-center poweredBy">
-					<span class="logo">
-						<img src="images/powered-by/bootstrap-logo.png" alt="">
-					</span>
-					<i class="fas fa-plus-circle"></i>
-					<span class="logo">
-						<img src="images/powered-by/Sass-logo.png" alt="">
-					</span>
-					<i class="fas fa-plus-circle"></i>
-					<span class="logo">
-						<img src="images/powered-by/jquery-logo.png" alt="">
-					</span>
-					<i class="fas fa-plus-circle"></i>
-					<span class="logo">
-						<img src="images/powered-by/font-awesome.png" alt="">
-					</span>
+		<div class="particles-overlay">
+			<nav class="navbar navbar-default navbar-expand-lg navbar-dark fixed-top bg-black">
+				<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample08" aria-controls="navbarsExample08" aria-expanded="false" aria-label="Toggle navigation">
+					<span class="navbar-toggler-icon"></span>
+				</button>
+				<div class="collapse navbar-collapse justify-content-md-center" id="navbarsExample08">
+					<ul class="navbar-nav uppercase">
+						<li class="nav-item">
+							<a class="" href="index.html#page-top">
+								<h5 class="brand text-yellow">Aurthur Musendame</h5>
+							</a>
+						</li>
+						<li class="nav-item hidden">
+							<a class="nav-link" href="#">hidden</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" href="blog.html">Stories</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" href="two-column.html">2 column</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" href="potfolio.html">Portfolio</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link page-scroll scroll-effect" href="#services">Services</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link page-scroll scroll-effect" href="#teaching">Teaching</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link page-scroll scroll-effect" href="#contact">Contact</a>
+						</li>
+					</ul>
+				</div>
+		    </nav>
+			
+			<div class="text-center spacer text-white">
+				<h1 class="heading">Smart Thinking With <span class="text-yellow">DATA</span></h1>
+				
+				<div class="avatar">
+					<img class="rounded-circle header-avatar" src="assets/img/avatar-b.jpg" alt="">
 				</div>
 
-			</div>			
+				<div class="inner text-center mb-5">
+					<p class="text-yellow  uppercase">DataScientist | Operations Research Analyst | Statistician | Medical Laboratory Technologist</p>
+				</div>
+
+				<hr>
+				<div id="typed-strings">
+					<p  class="">I am all about data, ^1000 bringing smart solutions through data.</p><p> ^1000How to bring data driven solutions to everyday problems.</p>
+					<p> ^1000 I have a good medical background ^1000 having worked as a medical laboratory technician </p>
+					<p> ^1000 During that period i was studying Operations Research and Statistics. </p>
+					<p> ^1000 I am a self taught Data Scientist building up from SORS. </p>
+					<p> ^1000 I am also a Django Website Developer learning R <p></p></p>
+				</div>
+				<span id="typed" class=" micro-spacer"></span>
+			</div>
+			<!-- placed the services id in this place for scroll to position page correctly
+				 otherwise it should be in the top section "sec" below -->
+			<div id="services"></div>
+		</div>
+
+		<main class="wrapper w-100 bg-white mid-spacer">
+			
+			<section id="sec" class="p-5">
+				<div class="container">	
+					<h2 class="text-center mb-5">Are you looking for?</h2>
+					<div class="card-deck">
+
+						<div class="card border-light text-center">
+						  <div class="card-body">
+						    <h5 class="card-title uppercase text-bold">Data Visualisation</h5>
+						 	<hr>
+						    <p class="card-text">Tranforming Data in graphical visuals for easy interpretations, e.g understand trends, outliers, and patterns in data</p>
+						  </div>
+						</div>
+
+						<div class="card border-light text-center">
+						  <div class="card-body">
+						 	<h5 class="card-title uppercase text-bold">Data Wrangling</h5>
+						 	<hr>
+						    <p class="card-text">Data gathering, cleaning, transformation and organisation for easy analysis. This is where data value is created.</p>
+						  </div>
+						</div>
+
+						<div class="card border-light text-center">
+						  <div class="card-body">
+						    <h5 class="card-title uppercase text-bold">Exploratory Analysis</h5>
+						 	<hr>
+						    <p class="card-text">Otaining important aspects of that data from the information gathered by means of statistical and visualization techniques for further analysis</p>
+						  </div>
+						</div>
+
+					</div>
+				</div>				
+			</section>
+
+			<section id="teaching" class="one-on-one mt-5 bg-gray p-5">
+				<div class="container">
+					<div class="card card-one-on-one text-center p-5">
+						<header class="card-header">
+							<div class="card-title">
+								<h2 class="mb-5">Wanna Learn some skillset</h2>
+							</div>
+						</header>
+						<div class="card-body">
+							<div class="row">
+								<div class="col-1"></div>
+								  <div class="col-3">
+								    <div class="list-group" id="list-tab" role="tablist">
+								      <a class="list-group-item list-group-item-action active" id="list-analytics-list" data-toggle="list" href="#list-analytics" role="tab" aria-controls="analytics">Analytics</a>
+								      <a class="list-group-item list-group-item-action" id="list-django-list" data-toggle="list" href="#list-django" role="tab" aria-controls="django">Django</a>
+								    </div>
+								  </div>
+								  <div class="col-7">
+								    <div class="tab-content" id="nav-tabContent">
+								      <div class="tab-pane fade show active" id="list-analytics" role="tabpanel" aria-labelledby="list-analytics-list">
+											<div class="list-group">
+											  <div href="#" class="list-group-item">
+											    <div class="d-flex w-100 justify-content-between">
+											      <h5 class="mb-1">Tidyverse</h5>
+											      <small>Data Wrangling</small>
+											    </div>
+											    <p class="mb-1">This is a tool in R that is great in performing data cleaning tasks. As you know that the rule number of data is that iit has to be clean</p>
+											    <small>&#126; tidy data &#126;</small>
+											  </div>
+											  <div href="#" class="list-group-item">
+											    <div class="d-flex w-100 justify-content-between">
+											      <h5 class="mb-1">Time Series Analysis</h5>
+											      <small class="text-muted">forecasting</small>
+											    </div>
+											    <p class="mb-1">Do you want to forecast demand, sales or estimate some variibale in the future?</p>
+											    <small class="text-muted">&#126; predictive analytics &#126;</small>
+											  </div>
+											  <div href="#" class="list-group-item">
+											    <div class="d-flex w-100 justify-content-between">
+											      <h5 class="mb-1">Data Visualisation</h5>
+											      <small class="text-muted">ggplot2</small>
+											    </div>
+											    <p class="mb-1">Make your data easy to digest and make decisions based on very beautiful visuals</p>
+											    <small class="text-muted">&#126; charts and graphs &#126;</small>
+											  </div>
+											</div>
+								      </div>
+								      <div class="tab-pane fade" id="list-django" role="tabpanel" aria-labelledby="list-django-list">
+								      	<p>We can do a lot of fun developing projects with dajango together</p>
+								      	<p>check out my <a href="potfolio.html">portfolio</a> for some of the projects i have done. This website is powered by django itself</p>
+								      </div>
+								    </div>
+								  </div>
+						</div>
+
+					</div>
+				</div>
+			</section>
+
+			<section class="tech-tools mid-spacer">
+				<div class="container">
+					<div class="card card-tools text-center bb-none">
+						<div class="card-body">
+							<div class="card-title text-black mb-5">
+								<h2>Tech and Tools</h2>
+							</div>
+							<div class="card-text">
+								<ul class="list-inline">
+									<li class="list-inline-item tech-tool">
+										<img src="assets/img/django-logo.svg" alt="" class="img-fluid">
+									</li>
+									<li class="list-inline-item tech-tool">
+										<img src="assets/img/r-logo.svg" alt="" class="img-fluid">
+									</li>
+									<li class="list-inline-item tech-tool">
+										<img src="assets/img/bootstrap-logo.svg" alt=""class="img-fluid">
+									</li>
+									<li class="list-inline-item tech-tool">
+										<img src="assets/img/jupyter-logo.svg" alt="" class="img-fluid">
+									</li>
+									<li class="list-inline-item tech-tool">
+										<img src="assets/img/python-logo.svg" alt="" class="img-fluid">
+									</li>
+									<li class="list-inline-item tech-tool">
+										<img src="assets/img/puput-logo.png" alt="" class="img-fluid">
+									</li>
+									<li class="list-inline-item tech-tool">
+										<img src="assets/img/saleor-logo.jpg" alt="" class="img-fluid">
+									</li>
+									<li class="list-inline-item tech-tool">
+										<img src="assets/img/anaconda-logo.png" alt="" class="img-fluid">
+									</li>
+								</ul>
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
+
 		</main>
 
-		<footer class="main-footer">
-			
-		</footer>
+	    <footer class="footer text-white">
+			<div class="container text-center mt-5">
+				<h1 id="contact">Work With Me</h1>
+				<hr>
+				<nav class="navbar social-nav">
+					<ul class="nav d-flex justify-content-center">
+						<li class="">
+							<a class="nav-link fa-icon" href="mailto:aurthurmusendame@gmail.com">
+								<i class="far fa-envelope"></i>
+							</a>
+						</li>
+						<li class="">
+							<a class="nav-link fa-icon" href="https://twitter.com/aurthurmusendam" target="_blank">
+								<i class="fab fa-twitter"></i>
+							</a>
+						</li>
+						<li class="">
+							<a class="nav-link text-white" href="https://www.facebook.com/amuselytica" target="_blank">AmuseLytics</a>
+						</li>
+						<li class="">
+							<a class="nav-link fa-icon" href="https://www.facebook.com/aurthurmusendame" target="_blank">
+								<i class="fab fa-facebook"></i>
+							</a>
+						</li>
+						<li class="">
+							<a class="nav-link fa-icon" href="https://github.com/aurthurm" target="_blank">
+								<i class="fab fa-github"></i>
+							</a>
+						</li>
+					</ul>		    
+				</nav>
+			</div>
+	    </footer>
+
 		<!-- Scripts Files -->
-			<script src="js/jquery.js"></script>
-			<script src="js/bootstrap.js"></script>
-		<!--build:js js/main.min.js -->
-			<script src="js/main.js"></script>
-		<!-- endbuild -->
+		<script src="assets/js/jquery.min.js"></script>
+		<script src="assets/js/bootstrap.min.js"></script>
+		<script src="assets/js/jquery.easing.min.js"></script>
+		<script src="assets/js/particles.min.js"></script>
+		<script src="assets/js/particle-config.js"></script>
+		<script src="assets/js/main.js"></script>
 	</body>
 </html>

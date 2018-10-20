@@ -1,0 +1,127 @@
+
+/* Variables
+-------------------------------------------------- */
+$black: #0D0D0D;
+$white: #FFFFFF;
+$gray: #D9D9D9;
+$yellow: #FFCB00;
+$orange: #FF6600;
+$light: 300;
+$bold: 400;
+$heavy: 900;
+
+
+@import url('https://fonts.googleapis.com/css?family=Lato:300,500|Ubuntu:300,500|Roboto:400,700|');
+
+/* Sticky footer styles
+-------------------------------------------------- */
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+html,
+body {
+  font-size: 1.1em;
+  font-weight: $light;
+  line-height: 1.5;
+  font-smoothing: antialiased !important;
+  -webkit-font-smoothing: antialiased !important;
+}
+
+body {
+  /* Margin bottom by footer height */
+  margin-bottom: 250px;
+}
+
+.footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 250px !important;
+  background-color: $black !important;
+}
+
+/* Fonts
+-------------------------------------------------- */
+body {
+  font-family: 'Lato','Ubuntu', sans-serif !important;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+.navbar-dark .navbar-nav .nav-link,
+.list-group-item.list-group-item-action  {
+  font-family: 'Roboto', sans-serif !important;
+}
+
+h1,
+h2,
+h3,
+.h1,
+.h2,
+.h3,
+.text-heavy {
+  font-weight: $heavy;
+}
+
+h4,
+h5,
+h6,
+.h4,
+.h5,
+.h6, 
+.text-bold {
+  font-weight: $bold;
+}
+
+p,
+.p,
+.text-light {
+  font-weight: $light;
+}
+
+/* Links
+-------------------------------------------------- */
+a,
+a:hover {
+  text-decoration: none;
+}
+
+/* Spacings
+-------------------------------------------------- */
+.spacer {
+    padding: 8rem 0 !important;
+}
+
+.mid-spacer {
+    padding: 5rem 0 !important;
+}
+
+.micro-spacer {
+  padding: 1rem;
+}
+
+/* Text Transformations
+-------------------------------------------------- */
+.uppercase {
+  text-transform: uppercase !important;
+}
+
+/* Text Colors
+-------------------------------------------------- */
+.text-white {
+  color: $white !important;
+}
+
+.text-gray {
+  color: $gray !important;
+}
+
+.text-yellow {
+  color: $yellow !important;
+}
